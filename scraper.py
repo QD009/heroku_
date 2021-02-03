@@ -48,7 +48,7 @@ def data():
 def tim():
     with open('time.txt', 'w') as f:
        x = datetime.datetime.now()      
-       b = x + timedelta(minutes=18) 
+       b = x + timedelta(minutes=10) 
        w = b.strftime("%b %d, %Y %H:%M") 
        f.write(str(w))       
 
@@ -65,7 +65,7 @@ def final_s():
             df_merge_col = pd.merge(f, h, on='Match No')
             del df_merge_col['HomeTeam_y']
             del df_merge_col['AwayTeam_y']
-            del df_merge_col['Unnamed: 0']
+            
           
             df_merge_col = df_merge_col.rename(columns={'HomeTeam_x': 'HomeTeam','AwayTeam_x': 'AwayTeam' })
             
@@ -170,7 +170,7 @@ def extract():
             print('creating results.csv file\n')
             rest = list(reversed(res))
             data_list = rest
-            print(data_list)
+            
             with open(file_path2,'w') as out:
                 csv_out=csv.writer(out)
                 csv_out.writerow(['Match No','Teams', 'Scores'])
@@ -217,7 +217,7 @@ def results_dataframe():
        hs.append(HTHG)
        ha.append(HTAG)
     for n in num2:
-        print(n)
+        
         mat.append(n)
           
     datta = zip(mat, h_list, a_list, sch, sca, hs, ha)
@@ -269,7 +269,7 @@ def append_dict_as_row(file_name):
         dr = file_data.drop_duplicates(subset=['Match No'], keep='first')
         with open(file_path_p) as f:
             g = f.readlines()
-            if len(g) > 156:
+            if len(g) > 6:
                 
                 print('calling trim function')
                 tim()
