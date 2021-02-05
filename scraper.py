@@ -105,7 +105,7 @@ def final_s():
             file_data = pd.read_csv(file_path3)
             dr = file_data.drop_duplicates(subset=['Match No'], keep='first')
             dr.to_csv(file_path3, index=False) 
-          
+            insert()
             with open(file_path3, 'rb') as file:
                 data_ = file.read()
                 file.close()
@@ -300,7 +300,7 @@ def append_dict_as_row(file_name):
         dr = file_data.drop_duplicates(subset=['Match No'], keep='first')
         with open(file_path_p) as f:
             g = f.readlines()
-            if len(g) > 156:
+            if len(g) > 9:
                 
                 print('calling trim function')
                 tim()
