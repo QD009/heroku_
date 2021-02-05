@@ -20,3 +20,4 @@ lxml==4.5.1
 bs4==0.0.1
 webdriver-manager==3.3.0
 selenium==3.141.0
+psycopg2-binary==2.8.6
