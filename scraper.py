@@ -18,6 +18,7 @@ import csv
 from csv import DictWriter
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import psycopg2
 from webdriver_manager.chrome import ChromeDriverManager
 
 gChromeOptions = webdriver.ChromeOptions()
@@ -27,6 +28,36 @@ gDriver = webdriver.Chrome(
 chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
 )
 
+def insert():
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        directory= os.path.dirname(os.path.realpath(__file__))
+        filename = "virtual.csv"
+        file_path3 = os.path.join(directory,'clean/', filename)      
+        connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cursor = connection.cursor()
+        directory= os.path.dirname(os.path.realpath(__file__))
+        final_r = "virtuals.csv"
+        file_path3 = os.path.join(directory, final_r)
+        with open(file_path3, 'r') as f:
+            
+            # Notice that we don't need the `csv` module.
+            next(f) # Skip the header row.
+            cursor.copy_from(f, 'virtuals', sep=',')
+            
+       
+        connection.commit()
+        print('successfully added data to postgresql database')
+    
+    
+    except (Exception, psycopg2.Error) as error:
+        print("Error while connecting to PostgreSQL", error)
+    finally:
+        if (connection):
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+    
 
 
 
