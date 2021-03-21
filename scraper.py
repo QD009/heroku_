@@ -77,7 +77,7 @@ def data():
 def tim():
     with open('time.txt', 'w') as f:
        x = datetime.datetime.now()      
-       b = x + timedelta(minutes=18) 
+       b = x + timedelta(minutes=15) 
        w = b.strftime("%b %d, %Y %H:%M") 
        f.write(str(w))       
 
@@ -298,7 +298,7 @@ def append_dict_as_row(file_name):
         dr = file_data.drop_duplicates(subset=['Match No'], keep='first')
         with open(file_path_p) as f:
             g = f.readlines()
-            if len(g) > 12:
+            if len(g) > 6:
                 
                 print('calling trim function')
                 tim()
